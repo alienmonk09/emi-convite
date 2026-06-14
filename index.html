@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convite de Aniversário - Emília</title>
+
+    <!-- Open Graph: preview com imagem ao colar o link (WhatsApp, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Você está convidado! 🧜‍♀️🍰">
+    <meta property="og:description" content="Aniversário da Emília — 28/06/2026 às 18h, na casa da dona Ruth. Vem comer bolo!">
+    <meta property="og:image" content="https://alienmonk09.github.io/emi-convite/image.jpeg">
+    <meta property="og:image:width" content="544">
+    <meta property="og:image:height" content="720">
+    <meta property="og:url" content="https://alienmonk09.github.io/emi-convite/">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
@@ -21,48 +32,36 @@
         .bubble {
             position: absolute;
             bottom: -20px;
-            background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
             animation: rise linear infinite;
         }
+        /* Tons suaves do gradiente do mar */
+        .bubble-white { background: rgba(255, 255, 255, 0.40); }
+        .bubble-cyan  { background: rgba(168, 237, 234, 0.45); }
+        .bubble-pink  { background: rgba(254, 214, 227, 0.55); }
         @keyframes rise {
             0% { transform: translateY(0) scale(1); opacity: 0; }
             20% { opacity: 1; }
-            100% { transform: translateY(-1000px) scale(1.5); opacity: 0; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body class="bg-ocean min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-x-hidden">
     
-    <!-- Bolhas animadas para o efeito fundo do mar -->
-    <div class="bubble w-8 h-8 left-[10%] animate-[rise_8s_infinite]"></div>
-    <div class="bubble w-12 h-12 left-[30%] animate-[rise_12s_infinite_2s]"></div>
-    <div class="bubble w-6 h-6 left-[50%] animate-[rise_10s_infinite_4s]"></div>
-    <div class="bubble w-10 h-10 left-[70%] animate-[rise_9s_infinite_1s]"></div>
-    <div class="bubble w-14 h-14 left-[90%] animate-[rise_15s_infinite_3s]"></div>
-    <div class="bubble w-5 h-5 left-[20%] animate-[rise_11s_infinite_5s]"></div>
-    <div class="bubble w-9 h-9 left-[80%] animate-[rise_14s_infinite_6s]"></div>
+    <!-- Bolhas de fundo (geradas via JS no final do body) -->
 
     <!-- Container do Convite (gradiente suave do mar) -->
     <div class="bg-gradient-to-b from-white via-cyan-50 to-pink-50 backdrop-blur-sm rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden z-10 border-4 border-white/60 transform transition duration-500 hover:scale-[1.02]">
         
         <!-- Área da Imagem da Sereia (proporção 4:5, corta um pouco o topo) -->
-        <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 flex items-center justify-center border-b-4 border-pink-200">
+        <div id="agua" class="relative aspect-[4/5] overflow-hidden bg-pink-50 flex items-center justify-center border-b-4 border-pink-200">
             <!-- Fallback caso a imagem não carregue -->
             <span class="absolute text-pink-300 text-sm font-medium z-0 text-center px-4">
                 (Salve a imagem da sereia como "image.jpeg" na mesma pasta deste arquivo)
             </span>
             <img src="image.jpeg" alt="Sereia Emília" class="absolute inset-0 w-full h-full object-cover object-bottom z-10" onerror="this.style.opacity='0'">
-            <!-- Bolhas subindo dentro da água, combinando com a imagem -->
-            <div class="bubble z-20 w-4 h-4 left-[8%] animate-[rise_7s_infinite]"></div>
-            <div class="bubble z-20 w-2 h-2 left-[18%] animate-[rise_5s_infinite_1.5s]"></div>
-            <div class="bubble z-20 w-6 h-6 left-[28%] animate-[rise_9s_infinite_2s]"></div>
-            <div class="bubble z-20 w-3 h-3 left-[40%] animate-[rise_6s_infinite_0.5s]"></div>
-            <div class="bubble z-20 w-5 h-5 left-[52%] animate-[rise_8s_infinite_3s]"></div>
-            <div class="bubble z-20 w-2 h-2 left-[63%] animate-[rise_5s_infinite_2.5s]"></div>
-            <div class="bubble z-20 w-4 h-4 left-[72%] animate-[rise_7s_infinite_1s]"></div>
-            <div class="bubble z-20 w-3 h-3 left-[83%] animate-[rise_6s_infinite_4s]"></div>
-            <div class="bubble z-20 w-5 h-5 left-[92%] animate-[rise_9s_infinite_2.5s]"></div>
+            <!-- Bolhas dentro da água geradas via JS -->
         </div>
 
         <!-- Área do Texto e Informações -->
@@ -120,5 +119,29 @@
             </div>
         </div>
     </div>
+
+    <!-- Gerador de bolhas animadas -->
+    <script>
+        const CORES = ['bubble-white', 'bubble-cyan', 'bubble-pink'];
+        function criarBolhas(alvo, qtd, { min = 6, max = 28, zIndex = 0 } = {}) {
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < qtd; i++) {
+                const b = document.createElement('div');
+                const tam = Math.round(min + Math.random() * (max - min));
+                b.className = 'bubble ' + CORES[Math.floor(Math.random() * CORES.length)];
+                b.style.width = b.style.height = tam + 'px';
+                b.style.left = Math.round(Math.random() * 96) + '%';
+                b.style.animationDuration = (5 + Math.random() * 11).toFixed(1) + 's';
+                b.style.animationDelay = (Math.random() * 8).toFixed(1) + 's';
+                if (zIndex) b.style.zIndex = zIndex;
+                frag.appendChild(b);
+            }
+            alvo.appendChild(frag);
+        }
+        // Fundo da página (mais bolhas, maiores)
+        criarBolhas(document.body, 45, { min: 8, max: 36 });
+        // Dentro da água do convite (menores, sobre a imagem)
+        criarBolhas(document.getElementById('agua'), 30, { min: 4, max: 18, zIndex: 20 });
+    </script>
 </body>
 </html>
