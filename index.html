@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Aniversário - Emília</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Fredoka', sans-serif; 
+        }
+        .font-cursive { 
+            font-family: 'Pacifico', cursive; 
+        }
+        /* Fundo inspirado no fundo do mar com gradiente suave */
+        .bg-ocean { 
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); 
+        }
+        /* Animação das bolhas do fundo do mar */
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-1000px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-ocean min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
+    
+    <!-- Bolhas animadas para o efeito fundo do mar -->
+    <div class="bubble w-8 h-8 left-[10%] animate-[rise_8s_infinite]"></div>
+    <div class="bubble w-12 h-12 left-[30%] animate-[rise_12s_infinite_2s]"></div>
+    <div class="bubble w-6 h-6 left-[50%] animate-[rise_10s_infinite_4s]"></div>
+    <div class="bubble w-10 h-10 left-[70%] animate-[rise_9s_infinite_1s]"></div>
+    <div class="bubble w-14 h-14 left-[90%] animate-[rise_15s_infinite_3s]"></div>
+    <div class="bubble w-5 h-5 left-[20%] animate-[rise_11s_infinite_5s]"></div>
+    <div class="bubble w-9 h-9 left-[80%] animate-[rise_14s_infinite_6s]"></div>
+
+    <!-- Container do Convite (gradiente suave do mar) -->
+    <div class="bg-gradient-to-b from-white via-cyan-50 to-pink-50 backdrop-blur-sm rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden z-10 border-4 border-white/60 transform transition duration-500 hover:scale-[1.02]">
+        
+        <!-- Área da Imagem da Sereia (proporção 4:5, corta um pouco o topo) -->
+        <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 flex items-center justify-center border-b-4 border-pink-200">
+            <!-- Fallback caso a imagem não carregue -->
+            <span class="absolute text-pink-300 text-sm font-medium z-0 text-center px-4">
+                (Salve a imagem da sereia como "image.jpeg" na mesma pasta deste arquivo)
+            </span>
+            <img src="image.jpeg" alt="Sereia Emília" class="absolute inset-0 w-full h-full object-cover object-bottom z-10" onerror="this.style.opacity='0'">
+            <!-- Bolhas subindo dentro da água, combinando com a imagem -->
+            <div class="bubble z-20 w-4 h-4 left-[8%] animate-[rise_7s_infinite]"></div>
+            <div class="bubble z-20 w-2 h-2 left-[18%] animate-[rise_5s_infinite_1.5s]"></div>
+            <div class="bubble z-20 w-6 h-6 left-[28%] animate-[rise_9s_infinite_2s]"></div>
+            <div class="bubble z-20 w-3 h-3 left-[40%] animate-[rise_6s_infinite_0.5s]"></div>
+            <div class="bubble z-20 w-5 h-5 left-[52%] animate-[rise_8s_infinite_3s]"></div>
+            <div class="bubble z-20 w-2 h-2 left-[63%] animate-[rise_5s_infinite_2.5s]"></div>
+            <div class="bubble z-20 w-4 h-4 left-[72%] animate-[rise_7s_infinite_1s]"></div>
+            <div class="bubble z-20 w-3 h-3 left-[83%] animate-[rise_6s_infinite_4s]"></div>
+            <div class="bubble z-20 w-5 h-5 left-[92%] animate-[rise_9s_infinite_2.5s]"></div>
+        </div>
+
+        <!-- Área do Texto e Informações -->
+        <div class="p-8 text-center relative">
+            <!-- Título Brincalhão -->
+            <h1 class="font-cursive text-4xl text-pink-500 mb-6 drop-shadow-sm">Você está convidado!</h1>
+
+            <!-- Mensagem Principal -->
+            <p class="text-gray-700 text-lg mb-8 leading-relaxed font-medium px-2">
+                "Você está convidado para comer um pedaço de bolo comigo. Talvez tenha um refrigerante para não engasgar." 🍰🥤
+            </p>
+
+            <!-- Box com os Detalhes do Evento -->
+            <div class="bg-gradient-to-r from-blue-50 to-pink-50 rounded-2xl p-5 mb-8 text-left space-y-4 shadow-sm border border-pink-100">
+                
+                <!-- Data -->
+                <div class="flex items-center text-blue-900">
+                    <div class="bg-white p-2 rounded-full shadow-sm mr-4 text-pink-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-pink-400 font-bold uppercase tracking-wider">Data</p>
+                        <p class="font-semibold text-lg">28/06/2026</p>
+                    </div>
+                </div>
+
+                <!-- Horário -->
+                <div class="flex items-center text-blue-900">
+                    <div class="bg-white p-2 rounded-full shadow-sm mr-4 text-pink-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-pink-400 font-bold uppercase tracking-wider">Horário</p>
+                        <p class="font-semibold text-lg">18h</p>
+                    </div>
+                </div>
+
+                <!-- Local -->
+                <div class="flex items-center text-blue-900">
+                    <div class="bg-white p-2 rounded-full shadow-sm mr-4 text-pink-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-pink-400 font-bold uppercase tracking-wider">Local</p>
+                        <p class="font-semibold text-lg">Casa da dona Ruth</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Assinatura -->
+            <div class="mt-4 pt-4">
+                <p class="font-cursive text-2xl text-pink-400/80">Com carinho,</p>
+                <p class="font-cursive text-4xl text-pink-600 mt-2 drop-shadow-sm">Emília</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
